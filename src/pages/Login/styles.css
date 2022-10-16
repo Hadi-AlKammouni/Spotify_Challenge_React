@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.btn {
+    width: 30%;
+    padding: 15px;
+    font-size: 20px;
+    background: none;
+    border: 2px solid rgb(191, 189, 189);
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: rgb(232, 227, 227);
+}
+
+.logo {
+    width: 8vh;
+    vertical-align: middle;
+}
