@@ -1,11 +1,11 @@
-.container {
+.search-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-.row {
+.search-row {
     display: flex;
     justify-content: center;
     width: 100%;

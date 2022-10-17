@@ -1,8 +1,10 @@
-import { useState ,useEffect } from "react";
-
+import { useState, useEffect } from "react";
+import logo from "../../assets/spotify_logo.png"
 import './styles.css'
 
 const ArtistSearch = () => {
+
+    var isArtist = false
 
     // Initialize Input State
     const [artist, setArtist] = useState(null);
@@ -50,17 +52,52 @@ const ArtistSearch = () => {
     },[])
 
     return (
-        <div className="container">
-            <div className='row'>
-            <form onSubmit={onSearch}>
-                <input 
-                    type="text" 
-                    placeholder="Search for an artist..." 
-                    onChange={(e) => setArtist(e.target.value)}
-                ></input>
-            </form>
+        <>
+            {!isArtist ? 
+                null 
+                :
+                <div className="search-container">
+                    <div className='search-row'>
+                    <form onSubmit={onSearch}>
+                        <input 
+                            type="text" 
+                            placeholder="Search for an artist..." 
+                            onChange={(e) => setArtist(e.target.value)}
+                        ></input>
+                    </form>
+                    </div>
+                </div>
+            }
+
+            <div className="cards-body">
+                <div className="cards-container">
+                    <div className="cards-row">
+
+                        <div className="card">
+                        <img className="img" src={logo} alt=""/>
+                            <h4>Tom</h4>
+                            <p>Followers</p>
+                            <h3>rating</h3>
+                        </div>
+
+                        <div className="card">
+                        <img className="img" src={logo} alt=""/>
+                            <h4>Tom</h4>
+                            <p>Followers</p>
+                            <h3>rating</h3>
+                        </div>
+
+                        <div className="card">
+                        <img className="img" src={logo} alt=""/>
+                            <h4>Tom</h4>
+                            <p>Followers</p>
+                            <h3>rating</h3>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
