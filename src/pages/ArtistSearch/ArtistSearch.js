@@ -1,6 +1,11 @@
-import { useEffect } from "react"
+import { useState ,useEffect } from "react";
+
+import './styles.css'
 
 const ArtistSearch = () => {
+
+    // Initialize Input State
+    const [artist, setArtist] = useState('');
     
     // Function to separate the query parameter and its value from the response url
     const getReturnedParams = (hash) => {
@@ -23,7 +28,17 @@ const ArtistSearch = () => {
     },[])
 
     return (
-        <div>Artist Search here!</div>
+        <div className="container">
+            <div className='row'>
+                <input 
+                    type="text" 
+                    placeholder="Search for an artist..." 
+                    onChange={(e) => {
+                        setArtist(e.target.value)
+                    }}
+                ></input>
+            </div>
+        </div>
     )
 }
 
