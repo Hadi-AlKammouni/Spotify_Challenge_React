@@ -75,11 +75,23 @@ const ArtistSearch = () => {
             }
 
             {isArtist ? 
+            <>
+                <div className="search-container-with-artists">
+                    <div className='search-row'>
+                        <form onSubmit={onSearch}>
+                            <input 
+                                type="text" 
+                                placeholder="Search for an artist..." 
+                                onChange={(e) => setArtistSearch(e.target.value)}
+                            ></input>
+                        </form>
+                    </div>
+                </div>
+
                 <div className="cards-body">
                     <div className="cards-container">
                         <div className="cards-row">
                             {artistsData?.map((artist, i) => {
-                                console.log(artist)
                                 return (
                                     <div className="card" key={i}>
                                         <img className="img" src={artist.images[1]?.url} alt="artist-image"/>
@@ -91,6 +103,7 @@ const ArtistSearch = () => {
                         </div>
                     </div>
                 </div>
+            </>    
                 :
                 null
             }

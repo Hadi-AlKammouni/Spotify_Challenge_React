@@ -11,6 +11,13 @@
     width: 100%;
 }
 
+.search-container-with-artists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
 .cards-body {
     width: 100%;
     min-height: 100vh;
