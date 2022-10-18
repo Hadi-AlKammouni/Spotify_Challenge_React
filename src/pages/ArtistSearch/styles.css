@@ -54,6 +54,8 @@ h3 {
     align-self: normal;
     cursor: pointer;
     border-radius: 15px;
+    width: 240px;
+    height: 320px;
 }
 
 .card:hover {
@@ -63,4 +65,15 @@ h3 {
 
 .img {
     max-width: 200px;
+    max-height: 200px;
+    border-radius: 15px;
+}
+
+.star { 
+    max-width: 20px;
+    margin-top: auto;
+}
+
+.rating{
+    margin-top: auto;
 }

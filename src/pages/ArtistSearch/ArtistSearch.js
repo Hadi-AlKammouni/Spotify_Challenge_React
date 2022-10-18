@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 
+import star from "../../assets/star.png"
+import empty_star from "../../assets/empty-star.png"
+
 import './styles.css'
 
 const ArtistSearch = () => {
@@ -47,6 +50,15 @@ const ArtistSearch = () => {
         } catch (error) {
           console.error(error);
         }
+    }
+
+    // Called to display the artist's popularity (rating)
+    const displayRating = (popularity) => {
+        var rating = []
+        for (let i = 0; i < popularity; i++) {
+            rating.push(<img className="star" key={i} src={star} alt="popularity"/>)
+        }
+        return rating
     }
     
     useEffect(() => {
@@ -97,6 +109,11 @@ const ArtistSearch = () => {
                                         <img className="img" src={artist.images[1]?.url} alt="artist-image"/>
                                         <h4>{artist.name}</h4>
                                         <p>{(artist.followers.total).toLocaleString('en-US')} followers</p>
+                                        {(artist.popularity/20).toFixed(0) === "0" ?
+                                            <span className="rating"><img className="star" src={empty_star} alt="popularity"/></span>
+                                        :    
+                                            <span className="rating">{displayRating((artist.popularity/20).toFixed(0))}</span>
+                                        }
                                     </div>
                                 )
                             })}
