@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState ,useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { useSpotify } from "../../context/spotify";
@@ -9,6 +9,7 @@ const Albums = () => {
     const artist_id = location.state.id
     const artist_name = location.state.name
     const {spotifyAccessToken} = useSpotify()
+    const [albumsData, setAlbumsData] = useState(null);
 
     // Getting an artist's albums 
     const getArtistAlbums = async (artist_id, spotifyAccessToken) => {
@@ -21,7 +22,7 @@ const Albums = () => {
             })
             .then (response => response.json())
             .then(data => {
-                console.log(data)
+                setAlbumsData(data)
             });
         } catch (error) {
           console.error(error);
@@ -30,12 +31,24 @@ const Albums = () => {
 
     useEffect(() => {
         getArtistAlbums(artist_id,spotifyAccessToken)
-        console.log(artist_id)
-        console.log(spotifyAccessToken)
     },[])
 
     return (
-        <div>Here are the albums!</div>
+        <div className="cards-body">
+            {console.log(albumsData)}
+                    <div className="cards-container">
+                        <div className="cards-row">
+                            {albumsData?.items.map((album, i) => {
+                                return (
+                                    <div className="card" key={i}>
+                                        <img className="img" src={album.images[1]?.url} alt="artist-image"/>
+                                        <h4>{album.name}</h4>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
     )
 }
 
