@@ -105,7 +105,11 @@ const ArtistSearch = () => {
                             <input 
                                 type="text" 
                                 placeholder="Search for an artist..." 
-                                onChange={(e) => setArtistToSearch(e.target.value)}
+                                onChange={(e) => {
+                                    searchForAnArtist(e.target.value)
+                                    setArtistToSearch(e.target.value)
+                                    setLastSearch(e.target.value)
+                                }}
                             />
                         </form>
                     </div>
