@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useSpotify } from "../../context/spotify";
-import star from "../../assets/star.png"
-import empty_star from "../../assets/empty-star.png"
-
-import './styles.css'
+import constants from "../../constants/constants";
+import star from "../../assets/star.png";
+import empty_star from "../../assets/empty-star.png";
+import './styles.css';
 
 const ArtistSearch = () => {
 
     // Initialize Input State
-    const [artistToSearch, setArtistToSearch] = useState(null);
-    const [accessToken, setAccessToken] = useState("");
-    const [isArtist, setIsArtist] = useState(false);
-    const [artistsData, setArtistsData] = useState(null);
-    const navigate = useNavigate();
+    const [artistToSearch, setArtistToSearch] = useState(null)
+    const [accessToken, setAccessToken] = useState("")
+    const [isArtist, setIsArtist] = useState(false)
+    const [artistsData, setArtistsData] = useState(null)
+    const navigate = useNavigate()
     const {setSpotifyAccessToken, lastSearch, setLastSearch} = useSpotify()
 
 
@@ -39,7 +39,7 @@ const ArtistSearch = () => {
     // Getting an artist's data 
     const searchForAnArtist = async (artist) => {
         try {
-          const response = await fetch(`https://api.spotify.com/v1/search?q=artist%3A${artist}&type=artist`,{
+          const response = await fetch(`${constants.fetch_url}/v1/search?q=artist%3A${artist}&type=artist`,{
             headers: {
                 "Content-Type" : "application/json",
                 "Authorization": `Bearer ${accessToken}`

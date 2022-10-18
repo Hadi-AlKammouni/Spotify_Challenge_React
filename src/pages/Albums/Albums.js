@@ -2,20 +2,21 @@ import { useState ,useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import { useSpotify } from "../../context/spotify";
+import constants from "../../constants/constants";
 import "./styles.css";
 
 const Albums = () => {
 
-    const location = useLocation();
+    const location = useLocation()
     const artist_id = location.state.id
     const artist_name = location.state.name
     const {spotifyAccessToken} = useSpotify()
-    const [albumsData, setAlbumsData] = useState(null);
+    const [albumsData, setAlbumsData] = useState(null)
 
     // Getting an artist's albums 
     const getArtistAlbums = async (artist_id, spotifyAccessToken) => {
         try {
-          const response = await fetch(`https://api.spotify.com/v1/artists/${artist_id}/albums`,{
+          const response = await fetch(`${constants.fetch_url}/v1/artists/${artist_id}/albums`,{
             headers: {
                 "Content-Type" : "application/json",
                 "Authorization": `Bearer ${spotifyAccessToken}`

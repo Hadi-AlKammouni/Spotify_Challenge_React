@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Albums from "./pages/Albums/Albums";
 
+import Albums from "./pages/Albums/Albums";
 import ArtistSearch from "./pages/ArtistSearch/ArtistSearch";
 import Login from "./pages/Login/Login";
 

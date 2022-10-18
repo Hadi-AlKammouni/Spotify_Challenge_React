@@ -1,5 +1,5 @@
-import './styles.css'
-import logo from "../../assets/spotify_logo.png"
+import './styles.css';
+import logo from "../../assets/spotify_logo.png";
 
 const Login = () => {
 
