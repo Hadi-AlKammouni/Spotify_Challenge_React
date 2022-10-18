@@ -5,9 +5,10 @@ export const SpotifyContext = React.createContext();
 const SpotifyProvider = ({children}) => {
     
     const [spotifyAccessToken, setSpotifyAccessToken] = useState('')
+    const [lastSearch, setLastSearch] = useState('')
 
     return (
-        <SpotifyContext.Provider value={{spotifyAccessToken, setSpotifyAccessToken}}>
+        <SpotifyContext.Provider value={{spotifyAccessToken, setSpotifyAccessToken, lastSearch, setLastSearch}}>
             {children}
         </SpotifyContext.Provider>
     )
@@ -16,6 +17,6 @@ const SpotifyProvider = ({children}) => {
 export default SpotifyProvider;
 
 export const useSpotify = () => {
-    const {spotifyAccessToken, setSpotifyAccessToken} = React.useContext(SpotifyContext)
-    return {spotifyAccessToken, setSpotifyAccessToken}
+    const {spotifyAccessToken, setSpotifyAccessToken, lastSearch, setLastSearch} = React.useContext(SpotifyContext)
+    return {spotifyAccessToken, setSpotifyAccessToken, lastSearch, setLastSearch}
 }

@@ -10,12 +10,12 @@ import './styles.css'
 const ArtistSearch = () => {
 
     // Initialize Input State
-    const [artistSearch, setArtistSearch] = useState(null);
+    const [artistToSearch, setArtistToSearch] = useState(null);
     const [accessToken, setAccessToken] = useState("");
     const [isArtist, setIsArtist] = useState(false);
     const [artistsData, setArtistsData] = useState(null);
     const navigate = useNavigate();
-    const {setSpotifyAccessToken} = useSpotify()
+    const {setSpotifyAccessToken, lastSearch, setLastSearch} = useSpotify()
 
 
     // Function to separate the query parameter and its value from the response url
@@ -23,7 +23,6 @@ const ArtistSearch = () => {
         const string_after = hash.substring(1)
         const params_in_url = string_after.split("&")
         const paramsSplit = params_in_url.reduce((accumulater, current_value) => {
-            // console.log(current_value)
             const [key, value] = current_value.split("=")
             accumulater[key] = value
             return accumulater
@@ -34,7 +33,7 @@ const ArtistSearch = () => {
     // Calling searchForAnArtist function upon pressing the “Return” key inside the search box
     const onSearch = (e) => {
         e.preventDefault();
-        searchForAnArtist(artistSearch)
+        searchForAnArtist(artistToSearch)
     }  
     
     // Getting an artist's data 
@@ -72,6 +71,9 @@ const ArtistSearch = () => {
             setAccessToken(object.access_token)
             setSpotifyAccessToken(object.access_token)
         }
+        if(lastSearch.length != 0) {
+            searchForAnArtist(lastSearch)
+        }
     },[])
 
     return (
@@ -83,7 +85,10 @@ const ArtistSearch = () => {
                         <input 
                             type="text" 
                             placeholder="Search for an artist..." 
-                            onChange={(e) => setArtistSearch(e.target.value)}
+                            onChange={(e) => {
+                                setLastSearch(e.target.value)
+                                setArtistToSearch(e.target.value)
+                            }}
                         ></input>
                     </form>
                     </div>
@@ -100,7 +105,7 @@ const ArtistSearch = () => {
                             <input 
                                 type="text" 
                                 placeholder="Search for an artist..." 
-                                onChange={(e) => setArtistSearch(e.target.value)}
+                                onChange={(e) => setArtistToSearch(e.target.value)}
                             ></input>
                         </form>
                     </div>
@@ -110,7 +115,6 @@ const ArtistSearch = () => {
                     <div className="cards-container">
                         <div className="cards-row">
                             {artistsData?.map((artist, i) => {
-                                console.log(artistsData)
                                 return (
                                     <div className="card" key={i} onClick={()=>navigate("/albums",{state:{id:artist.id,name:artist.name}})}>
                                         <img className="img" src={artist.images[1]?.url} alt="artist-image"/>
