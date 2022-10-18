@@ -1,24 +1,10 @@
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+.title {
+    margin: 40px;
+    color:  rgb(58, 213, 20);
+    font-size: 40px;
 }
 
-.search-row {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-.search-container-with-artists {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-}
-
-.cards-body {
+.albums-body {
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -28,23 +14,23 @@
     line-height: 1.5;
 }
 
-h3 {
+h2 {
     margin-top: auto;
 }
 
-.cards-container {
+.albums-container {
     max-width: 100%;
     margin: 0 auto;
 }
 
-.cards-row {
+.albums-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content:space-around
 }
 
-.card {
+.album {
     display: flex;
     flex-direction: column;
     margin: 10px 20px;
@@ -52,13 +38,12 @@ h3 {
     background: #fff;
     box-shadow: 0 0 20px rgba(0,0,0,0.4);
     align-self: normal;
-    cursor: pointer;
     border-radius: 15px;
     width: 300px;
-    height: 320px;
+    height: 420;
 }
 
-.card:hover {
+.album:hover {
     transform: scale(1.2);
     transition: all .5s;
 }
@@ -69,11 +54,18 @@ h3 {
     border-radius: 15px;
 }
 
-.star { 
-    max-width: 20px;
+.preview {
     margin-top: auto;
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    background-color: rgb(58, 213, 20);
+    border-radius: 15px;
+    font-weight: bold;
+    font-style: italic;
 }
 
-.rating{
-    margin-top: auto;
+.preview:hover {
+    background-color: rgb(102, 223, 72);
 }
