@@ -46,6 +46,7 @@ h2 {
 .album:hover {
     transform: scale(1.2);
     transition: all .5s;
+    box-shadow: 0 0 20px #32e17c;
 }
 
 .img {
@@ -68,4 +69,8 @@ h2 {
 
 .preview:hover {
     background-color: rgb(102, 223, 72);
+}
+
+.preview:active {
+    transform: scale(0.9);
 }

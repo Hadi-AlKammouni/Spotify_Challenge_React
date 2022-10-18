@@ -15,13 +15,22 @@
     width: 30%;
     padding: 15px;
     font-size: 20px;
+    font-weight: bold;
     background: none;
-    border: 2px solid rgb(191, 189, 189);
+    border: 2px solid #32e17c;
     cursor: pointer;
+    letter-spacing: 5px;
+    transition: .8s;
+    border-radius: 15px;
 }
 
 .btn:hover {
-    background-color: rgb(232, 227, 227);
+    background-color: #dde0de;
+    box-shadow: 0 5px 15px 0 #32e17c inset, 0 5px 15px 0 #32e17c, 0 5px 15px 0 #32e17c inset, 0 5px 15px 0 #32e17c;
+}
+
+.btn:active {
+    transform: scale(0.8);
 }
 
 .logo {
