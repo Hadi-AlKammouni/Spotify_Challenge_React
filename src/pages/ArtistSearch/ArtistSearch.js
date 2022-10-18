@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 import { useSpotify } from "../../context/spotify";
 import constants from "../../constants/constants";
@@ -71,7 +73,7 @@ const ArtistSearch = () => {
             setAccessToken(object.access_token)
             setSpotifyAccessToken(object.access_token)
         }
-        if(lastSearch.length != 0) {
+        if(lastSearch.length !== 0) {
             searchForAnArtist(lastSearch)
         }
     },[])
@@ -81,16 +83,19 @@ const ArtistSearch = () => {
             {!isArtist ? 
                 <div className="search-container">
                     <div className='search-row'>
-                    <form onSubmit={onSearch}>
-                        <input 
-                            type="text" 
-                            placeholder="Search for an artist..." 
-                            onChange={(e) => {
-                                setLastSearch(e.target.value)
-                                setArtistToSearch(e.target.value)
-                            }}
-                        />
-                    </form>
+                        <form onSubmit={onSearch}>
+                            <div className="form-input">
+                                <input 
+                                    type="text" 
+                                    placeholder="Search for an artist..." 
+                                    onChange={(e) => {
+                                        setLastSearch(e.target.value)
+                                        setArtistToSearch(e.target.value)
+                                    }}
+                                />
+                                <span className="icon"><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 :
@@ -102,15 +107,18 @@ const ArtistSearch = () => {
                 <div className="search-container-with-artists">
                     <div className='search-row'>
                         <form onSubmit={onSearch}>
-                            <input 
-                                type="text" 
-                                placeholder="Search for an artist..." 
-                                onChange={(e) => {
-                                    searchForAnArtist(e.target.value)
-                                    setArtistToSearch(e.target.value)
-                                    setLastSearch(e.target.value)
-                                }}
-                            />
+                            <div className="form-input">
+                                <input 
+                                    type="text" 
+                                    placeholder="Search for an artist..." 
+                                    onChange={(e) => {
+                                        searchForAnArtist(e.target.value)
+                                        setArtistToSearch(e.target.value)
+                                        setLastSearch(e.target.value)
+                                    }}
+                                />
+                                <span className="icon"><FontAwesomeIcon icon={faMagnifyingGlass} /></span>
+                            </div>
                         </form>
                     </div>
                 </div>
