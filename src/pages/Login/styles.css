@@ -37,3 +37,9 @@
     width: 8vh;
     vertical-align: middle;
 }
+
+@media screen and (max-width: 360px){
+    .btn{
+        width: fit-content;
+    }
+}
