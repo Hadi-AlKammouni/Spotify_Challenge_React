@@ -104,6 +104,7 @@ const ArtistSearch = () => {
                     <div className="cards-container">
                         <div className="cards-row">
                             {artistsData?.map((artist, i) => {
+                                // console.log(artistsData)
                                 return (
                                     <div className="card" key={i}>
                                         <img className="img" src={artist.images[1]?.url} alt="artist-image"/>
