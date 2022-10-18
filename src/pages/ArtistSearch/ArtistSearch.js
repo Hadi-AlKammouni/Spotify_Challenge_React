@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { useSpotify } from "../../context/spotify";
 import star from "../../assets/star.png"
 import empty_star from "../../assets/empty-star.png"
 
@@ -12,6 +14,9 @@ const ArtistSearch = () => {
     const [accessToken, setAccessToken] = useState("");
     const [isArtist, setIsArtist] = useState(false);
     const [artistsData, setArtistsData] = useState(null);
+    const navigate = useNavigate();
+    const {setSpotifyAccessToken} = useSpotify()
+
 
     // Function to separate the query parameter and its value from the response url
     const getReturnedParams = (hash) => {
@@ -65,8 +70,9 @@ const ArtistSearch = () => {
         if(window.location.hash) {
             const object = getReturnedParams(window.location.hash)
             setAccessToken(object.access_token)
+            setSpotifyAccessToken(object.access_token)
         }
-    },[artistsData])
+    },[])
 
     return (
         <>
@@ -104,9 +110,9 @@ const ArtistSearch = () => {
                     <div className="cards-container">
                         <div className="cards-row">
                             {artistsData?.map((artist, i) => {
-                                // console.log(artistsData)
+                                console.log(artistsData)
                                 return (
-                                    <div className="card" key={i}>
+                                    <div className="card" key={i} onClick={()=>navigate("/albums",{state:{id:artist.id,name:artist.name}})}>
                                         <img className="img" src={artist.images[1]?.url} alt="artist-image"/>
                                         <h4>{artist.name}</h4>
                                         <p>{(artist.followers.total).toLocaleString('en-US')} followers</p>
