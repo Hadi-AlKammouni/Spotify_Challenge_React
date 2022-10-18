@@ -48,6 +48,7 @@ const Albums = () => {
                                 })}
                                 <p>{album.release_date}</p>
                                 <p>{album.total_tracks} tracks</p>
+                                <a href={album.external_urls.spotify}>Preview on Spotify</a>
                             </div>
                         )
                     })}
