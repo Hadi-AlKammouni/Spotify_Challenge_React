@@ -12,22 +12,23 @@ const Albums = () => {
     const artist_name = location.state.name
     const {spotifyAccessToken} = useSpotify()
     const [albumsData, setAlbumsData] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     // Getting an artist's albums 
     const getArtistAlbums = async (artist_id, spotifyAccessToken) => {
         try {
-          const response = await fetch(`${constants.fetch_url}/v1/artists/${artist_id}/albums`,{
-            headers: {
-                "Content-Type" : "application/json",
-                "Authorization": `Bearer ${spotifyAccessToken}`
-            }
+            setIsLoading(true)
+            const response = await fetch(`${constants.fetch_url}/v1/artists/${artist_id}/albums`,{
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Authorization": `Bearer ${spotifyAccessToken}`
+                }
             })
-            .then (response => response.json())
-            .then(data => {
-                setAlbumsData(data)
-            });
+            const data = await response.json()
+            setIsLoading(false)
+            setAlbumsData(data)
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
     }
 
@@ -38,13 +39,14 @@ const Albums = () => {
     return (
         <>
         <h1 className="title">{artist_name}'s Albums</h1>
+        { !isLoading ?
             <div className="albums-body">
                 <div className="albums-container">
                     <div className="albums-row">
                         {albumsData?.items.map((album, i) => {
                             return (
                                 <div className="album" key={i}>
-                                    <img className="img" src={album.images[1]?.url} alt="artist-image"/>
+                                    <img className="img" src={album.images[1]?.url} alt="artist"/>
                                     <h2>{album.name}</h2>
                                     {/* Displaying the artists of the album */}
                                     {album.artists.map((artist, i) => {
@@ -59,6 +61,11 @@ const Albums = () => {
                     </div>
                 </div>
             </div>
+        :
+            <div className="search-container">
+                    <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </div>
+        }
         </>
     )
 }

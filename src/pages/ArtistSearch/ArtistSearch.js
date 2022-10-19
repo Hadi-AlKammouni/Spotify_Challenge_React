@@ -41,20 +41,18 @@ const ArtistSearch = () => {
     // Getting an artist's data 
     const searchForAnArtist = async (artist) => {
         try {
-          const response = await fetch(`${constants.fetch_url}/v1/search?q=artist%3A${artist}&type=artist`,{
-            headers: {
-                "Content-Type" : "application/json",
-                "Authorization": `Bearer ${accessToken}`
-            }
+            const response = await fetch(`${constants.fetch_url}/v1/search?q=artist%3A${artist}&type=artist`,{
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Authorization": `Bearer ${accessToken}`
+                }
             })
-            .then (response => response.json())
-            .then(data => {
-                setIsArtist(true)
-                const artists_array = Object.entries(data)
-                setArtistsData(artists_array[0][1].items)
-            });
+            const data = await response.json()
+            const artists_array = Object.entries(data)
+            setArtistsData(artists_array[0][1].items)
+            setIsArtist(true)
         } catch (error) {
-          console.error(error);
+            console.error(error);
         }
     }
 
@@ -129,9 +127,10 @@ const ArtistSearch = () => {
                             {artistsData?.map((artist, i) => {
                                 return (
                                     <div className="card" key={i} onClick={()=>navigate("/albums",{state:{id:artist.id,name:artist.name}})}>
-                                        <img className="img" src={artist.images[1]?.url} alt="artist-image"/>
+                                        <img className="img" src={artist.images[1]?.url} alt="artist"/>
                                         <h4>{artist.name}</h4>
                                         <p>{(artist.followers.total).toLocaleString('en-US')} followers</p>
+                                        {/* Displaying artist's rating */}
                                         {(artist.popularity/20).toFixed(0) === "0" ?
                                             <span className="rating"><img className="star" src={empty_star} alt="popularity"/></span>
                                         :    

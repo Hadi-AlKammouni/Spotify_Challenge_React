@@ -5,7 +5,7 @@ const Login = () => {
 
     const login = async () => {
         try {
-            var client_id = process.env.REACT_APP_CLIENT_ID;
+            var client_id = "8f059b9b27d0487885f7b5cf1781a62e";
             var redirect_uri = 'http://localhost:3000/artist-search';
 
             var state = generateRandomString(16);
